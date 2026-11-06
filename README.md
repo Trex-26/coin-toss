@@ -1,3 +1,7 @@
+live demo: https://coins-toss.netlify.app/
+
+
+
 # 🪙 3D Coin Toss Website
 
 A modern, minimal, and realistic 3D Coin Toss website built with pure HTML5, CSS3, and Vanilla JavaScript.
