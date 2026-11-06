@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Toss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-container">
+    <header class="header">
+      <h1 class="title">Coin Toss</h1>
+    </header>
+
+    <div class="stage-container">
+      <div class="coin-stage" aria-label="3D Coin Stage">
+        <!-- Coin Wrapper handles vertical jump arc and air precession -->
+        <div class="coin-wrapper" id="coinWrapper" role="button" tabindex="0" aria-label="Coin - click or press Enter to toss">
+          <!-- Coin element handles the multi-revolution 3D flip -->
+          <div class="coin" id="coin" role="img" aria-label="A golden 3D coin displaying Heads or Tails">
+            <!-- 3D Edge layers for physical coin thickness -->
+            <div class="coin-edge-group" aria-hidden="true">
+              <div class="coin-edge-layer" style="--layer-z: -4px"></div>
+              <div class="coin-edge-layer" style="--layer-z: -3.2px"></div>
+              <div class="coin-edge-layer" style="--layer-z: -2.4px"></div>
+              <div class="coin-edge-layer" style="--layer-z: -1.6px"></div>
+              <div class="coin-edge-layer" style="--layer-z: -0.8px"></div>
+              <div class="coin-edge-layer" style="--layer-z: 0px"></div>
+              <div class="coin-edge-layer" style="--layer-z: 0.8px"></div>
+              <div class="coin-edge-layer" style="--layer-z: 1.6px"></div>
+              <div class="coin-edge-layer" style="--layer-z: 2.4px"></div>
+              <div class="coin-edge-layer" style="--layer-z: 3.2px"></div>
+              <div class="coin-edge-layer" style="--layer-z: 4px"></div>
+            </div>
+
+            <!-- Heads Face (Front) -->
+            <div class="coin-face coin-face-heads" aria-hidden="false">
+              <svg class="coin-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="goldBaseH" x1="15%" y1="10%" x2="85%" y2="90%">
+                    <stop offset="0%" stop-color="#fff8db" />
+                    <stop offset="25%" stop-color="#ffd700" />
+                    <stop offset="55%" stop-color="#cf8c00" />
+                    <stop offset="85%" stop-color="#945700" />
+                    <stop offset="100%" stop-color="#5e3400" />
+                  </linearGradient>
+                  <radialGradient id="goldRadialH" cx="42%" cy="38%" r="62%">
+                    <stop offset="0%" stop-color="#fffde8" />
+                    <stop offset="35%" stop-color="#ffdc33" />
+                    <stop offset="70%" stop-color="#cf8c00" />
+                    <stop offset="100%" stop-color="#734200" />
+                  </radialGradient>
+                  <linearGradient id="goldBevelH" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                    <stop offset="50%" stop-color="#ffd700" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#2d1700" stop-opacity="0.95" />
+                  </linearGradient>
+                  <filter id="embossH" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="1.2" stdDeviation="0.6" flood-color="#ffffff" flood-opacity="0.75" />
+                    <feDropShadow dx="0" dy="-1.2" stdDeviation="0.8" flood-color="#3d2000" flood-opacity="0.85" />
+                  </filter>
+                </defs>
+
+                <!-- Background Base Disc -->
+                <circle cx="100" cy="100" r="98" fill="url(#goldBaseH)" stroke="#e6a800" stroke-width="1.5" />
+                <circle cx="100" cy="100" r="95" fill="url(#goldRadialH)" />
+
+                <!-- Milled Dentil Rim -->
+                <circle cx="100" cy="100" r="91" fill="none" stroke="#5c3400" stroke-width="1.5" stroke-opacity="0.7" />
+                <circle cx="100" cy="100" r="87" fill="none" stroke="#fff4b8" stroke-width="2.5" stroke-dasharray="2, 4.2" stroke-linecap="round" />
+                <circle cx="100" cy="100" r="83" fill="none" stroke="#7a4400" stroke-width="1.2" />
+                
+                <!-- Inner Field Line -->
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#ffd700" stroke-width="1" stroke-opacity="0.6" />
+
+                <!-- Arch Text: LIBERTY -->
+                <path id="archLiberty" d="M 28,100 A 72,72 0 0,1 172,100" fill="none" />
+                <text class="coin-engraved-text" filter="url(#embossH)">
+                  <textPath href="#archLiberty" startOffset="50%" text-anchor="middle">★ LIBERTY ★</textPath>
+                </text>
+
+                <!-- Embossed Classical Laurel Head Profile -->
+                <g filter="url(#embossH)" class="coin-art-relief">
+                  <!-- Classical Bust Silhouette -->
+                  <path d="M 98,46 C 88,46 80,53 77,62 C 75,68 72,72 67,76 C 65,78 67,82 72,82 C 74,82 75,84 76,87 C 77,91 73,94 70,96 C 73,99 78,99 81,97 C 83,101 87,104 91,105 C 93,110 88,116 82,121 C 80,123 82,127 88,127 C 98,127 110,123 117,116 C 122,111 123,104 120,98 C 119,94 122,90 123,86 C 126,77 124,67 117,60 C 112,54 105,49 98,46 Z" fill="#ffd94d" />
+                  
+                  <!-- Laurel Leaves -->
+                  <path d="M 81,57 C 86,53 93,55 94,59 C 91,61 85,61 81,57 Z" fill="#fff5b8" />
+                  <path d="M 89,53 C 95,49 102,51 103,55 C 100,57 94,57 89,53 Z" fill="#fff5b8" />
+                  <path d="M 97,51 C 103,47 110,50 111,54 C 107,56 102,55 97,51 Z" fill="#fff5b8" />
+                  <path d="M 76,64 C 82,60 88,63 88,67 C 85,69 79,68 76,64 Z" fill="#fff5b8" />
+                </g>
+
+                <!-- Prominent HEADS Banner -->
+                <g filter="url(#embossH)">
+                  <rect x="56" y="125" width="88" height="18" rx="4" fill="#6e3d00" fill-opacity="0.35" stroke="#ffd700" stroke-width="1.2" />
+                  <text x="100" y="139" text-anchor="middle" class="coin-main-label">HEADS</text>
+                </g>
+
+                <!-- Lower Arch Text: 2026 (curved cleanly along lower rim) -->
+                <path id="archYearH" d="M 35,135 A 74,74 0 0,0 165,135" fill="none" />
+                <text class="coin-engraved-subtext" filter="url(#embossH)">
+                  <textPath href="#archYearH" startOffset="50%" text-anchor="middle">★ 2026 ★</textPath>
+                </text>
+
+                <!-- Rim Bevel Glint -->
+                <circle cx="100" cy="100" r="97" fill="none" stroke="url(#goldBevelH)" stroke-width="2.5" />
+              </svg>
+              <!-- Metallic Sheen Overlay -->
+              <div class="coin-specular" aria-hidden="true"></div>
+            </div>
+
+            <!-- Tails Face (Back) -->
+            <div class="coin-face coin-face-tails" aria-hidden="true">
+              <svg class="coin-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="goldBaseT" x1="85%" y1="90%" x2="15%" y2="10%">
+                    <stop offset="0%" stop-color="#fff8db" />
+                    <stop offset="25%" stop-color="#ffd700" />
+                    <stop offset="55%" stop-color="#cf8c00" />
+                    <stop offset="85%" stop-color="#945700" />
+                    <stop offset="100%" stop-color="#5e3400" />
+                  </linearGradient>
+                  <radialGradient id="goldRadialT" cx="45%" cy="40%" r="62%">
+                    <stop offset="0%" stop-color="#fffde8" />
+                    <stop offset="35%" stop-color="#ffdc33" />
+                    <stop offset="70%" stop-color="#cf8c00" />
+                    <stop offset="100%" stop-color="#734200" />
+                  </radialGradient>
+                  <linearGradient id="goldBevelT" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                    <stop offset="50%" stop-color="#ffd700" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#2d1700" stop-opacity="0.95" />
+                  </linearGradient>
+                  <filter id="embossT" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="1.2" stdDeviation="0.6" flood-color="#ffffff" flood-opacity="0.75" />
+                    <feDropShadow dx="0" dy="-1.2" stdDeviation="0.8" flood-color="#3d2000" flood-opacity="0.85" />
+                  </filter>
+                </defs>
+
+                <!-- Background Base Disc -->
+                <circle cx="100" cy="100" r="98" fill="url(#goldBaseT)" stroke="#e6a800" stroke-width="1.5" />
+                <circle cx="100" cy="100" r="95" fill="url(#goldRadialT)" />
+
+                <!-- Milled Dentil Rim -->
+                <circle cx="100" cy="100" r="91" fill="none" stroke="#5c3400" stroke-width="1.5" stroke-opacity="0.7" />
+                <circle cx="100" cy="100" r="87" fill="none" stroke="#fff4b8" stroke-width="2.5" stroke-dasharray="2, 4.2" stroke-linecap="round" />
+                <circle cx="100" cy="100" r="83" fill="none" stroke="#7a4400" stroke-width="1.2" />
+
+                <!-- Inner Field Line -->
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#ffd700" stroke-width="1" stroke-opacity="0.6" />
+
+                <!-- Arch Text: E PLURIBUS UNUM -->
+                <path id="archUnum" d="M 28,100 A 72,72 0 0,1 172,100" fill="none" />
+                <text class="coin-engraved-text" filter="url(#embossT)">
+                  <textPath href="#archUnum" startOffset="50%" text-anchor="middle">★ E PLURIBUS UNUM ★</textPath>
+                </text>
+
+                <!-- Embossed Heraldic Eagle / Crest -->
+                <g filter="url(#embossT)" class="coin-art-relief">
+                  <!-- Central Shield -->
+                  <path d="M 89,73 L 111,73 L 111,92 Q 100,107 89,92 Z" fill="#ffd94d" stroke="#804b00" stroke-width="1.2" />
+                  <line x1="96" y1="78" x2="96" y2="97" stroke="#804b00" stroke-width="1" />
+                  <line x1="104" y1="78" x2="104" y2="97" stroke="#804b00" stroke-width="1" />
+                  
+                  <!-- Outstretched Wings -->
+                  <path d="M 89,76 C 74,68 60,70 48,80 C 58,85 71,84 87,86 Z" fill="#ffdf66" />
+                  <path d="M 87,82 C 74,79 62,82 54,90 C 63,93 75,91 87,92 Z" fill="#ffd94d" />
+                  <path d="M 111,76 C 126,68 140,70 152,80 C 142,85 129,84 113,86 Z" fill="#ffdf66" />
+                  <path d="M 113,82 C 126,79 138,82 146,90 C 137,93 125,91 113,92 Z" fill="#ffd94d" />
+                  
+                  <!-- Eagle Head & Beak -->
+                  <path d="M 98,64 C 96,60 100,56 104,58 C 108,60 106,66 102,69 Z" fill="#fff5b8" />
+                  <polygon points="104,60 113,63 104,65" fill="#ffcc00" />
+
+                  <!-- Olive Branch in Talons -->
+                  <path d="M 77,101 Q 100,111 123,101" fill="none" stroke="#ffd94d" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="82" cy="100" r="2.5" fill="#fff5b8" />
+                  <circle cx="118" cy="100" r="2.5" fill="#fff5b8" />
+                </g>
+
+                <!-- Prominent TAILS Banner -->
+                <g filter="url(#embossT)">
+                  <rect x="56" y="125" width="88" height="18" rx="4" fill="#6e3d00" fill-opacity="0.35" stroke="#ffd700" stroke-width="1.2" />
+                  <text x="100" y="139" text-anchor="middle" class="coin-main-label">TAILS</text>
+                </g>
+
+                <!-- Lower Arch Text: ONE DOLLAR (curved cleanly along lower rim) -->
+                <path id="archDollar" d="M 35,135 A 74,74 0 0,0 165,135" fill="none" />
+                <text class="coin-engraved-subtext" filter="url(#embossT)">
+                  <textPath href="#archDollar" startOffset="50%" text-anchor="middle">★ ONE DOLLAR ★</textPath>
+                </text>
+
+                <!-- Rim Bevel Glint -->
+                <circle cx="100" cy="100" r="97" fill="none" stroke="url(#goldBevelT)" stroke-width="2.5" />
+              </svg>
+              <!-- Metallic Sheen Overlay -->
+              <div class="coin-specular" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Realistic Ground Shadow reacting to height -->
+        <div class="coin-shadow" id="coinShadow" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Result Display -->
+    <div class="result-section">
+      <div class="result-badge" id="resultDisplay" aria-live="polite" aria-atomic="true">
+        <span class="result-label">Result:</span>
+        <span class="result-value" id="resultValue">Ready</span>
+      </div>
+    </div>
+
+    <!-- Toss Action -->
+    <div class="action-section">
+      <button type="button" class="toss-button" id="tossBtn">
+        <span class="toss-button-shine" aria-hidden="true"></span>
+        <span class="toss-button-text">Toss Coin</span>
+      </button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

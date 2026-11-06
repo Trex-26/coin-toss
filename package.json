@@ -1,0 +1,11 @@
+{
+  "name": "coin-toss-3d",
+  "version": "1.0.0",
+  "private": true,
+  "description": "3D Coin Toss Website",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
+
